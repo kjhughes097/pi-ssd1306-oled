@@ -169,18 +169,12 @@
         setDisplayRange(-1);
         for(int line=0; line<8; line++)
         {
-            for(int chunk=0; chunk< 8; chunk++)
-            {
-                unsigned char buffer[17] = {0};
-                buffer[0] = 0x40;
-                for(int i=0; i<16;i++)
-                {
-                    D printf("[%i]=%x ", (i+1), displayLines[line][(chunk * 16) + i]);
-                    buffer[i+1] = displayLines[line][(chunk * 16) + i];
-                }
-                D printf("\n");
-                writeI2C(buffer, 17);
+            unsigned char buffer[129] = {0};
+            buffer[0] = 0x40;
+            for(int i=0; i<128; i++) {
+                buffer[1 + i] = displayLines[line][i];
             }
+            writeI2C(buffer, 129);
         }
     }
 
