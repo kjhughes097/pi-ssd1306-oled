@@ -3,7 +3,7 @@
 ## Background
 This project was an exercise in reinventing the wheel for the purpose of learning...
 There are already a number of libraries that allow you to write to these little 128x64 OLED displays, but that would be too easy (and wouldn't teach us anything), so I decided to write my own.
-The article that accompanies this code can be found at http://pistarter.com/2016/ssd1306-128x64-bit-oled-display-interfacing-with-raspberry-pi/
+The article that accompanies this code can be found at https://kapie.com/2016/ssd1306-128x64-bit-oled-display-interfacing-with-raspberry-pi/
 
 ## Features
 The current version allows you to instantiate a 'SSD1306' object and use that to send text to the display.Here's a few of the other features:
@@ -18,7 +18,7 @@ Use of the code is as simple as including three files in your project (**charmap
  * **initDisplay()** - Does the initialization, sets things up. 
  * **setWordWrap(int)** - Configures the word wrap feature (0 = off, -1 = on)
  * **setDisplayMode(SSD1306::Mode)** - Configures screen scrolling, or wrapping (SSD1306::Mode::SCROLL or SSD1306::Mode::WRAP)
- * **textDisplay(const char *message)** - Sends the text to the device for displaying (e.g. *textDisplay("GOOD MORNING !!")*)
+ * **textDisplay(const char \*message)** - Sends the text to the device for displaying (e.g. *textDisplay("GOOD MORNING !!")*)
  * **clearDisplay()** - Blanks the whole screen.
  
 There is a small sample app (**oled.cpp**) that shows how to instantiate and use the SSD1306 class. When compiled you can use this app to test the device out from the command line:
