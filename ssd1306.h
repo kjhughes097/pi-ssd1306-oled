@@ -34,6 +34,7 @@ class SSD1306
         void textDisplay(const char *message);
         void setWordWrap(int);
         void setDisplayMode(SSD1306::Mode);
+	void setAltI2C();
 
     private:
         // line buffers (128 chars * 8 lines)
@@ -48,6 +49,7 @@ class SSD1306
         int i2cHandle = -1;
         int i2cInitialised = FALSE;
     	int i2cAddress = 0x3C;
+	int i2cAlternate = FALSE;
 
         // ssd1306 command sequences
         unsigned char initSequence[26] = {0x00,0xAE,0xA8,0x3F,0xD3,0x00,0x40,0xA1,0xC8,0xDA,0x12,0x81,0x7F,

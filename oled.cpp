@@ -8,6 +8,9 @@ int main( int argc, char * argv [] ) {
 	myDisplay.initDisplay();
 
     for (int i = 1; i < argc; i++) {
+		if(strcmp(argv[i], "-a")==0) {
+			myDisplay.setAltI2C();
+		}
 		if(strcmp(argv[i], "-i")==0) {
 			myDisplay.initDisplay();
 		}

@@ -24,6 +24,11 @@
         i2cInitialised = TRUE;
     }
 
+    void SSD1306::setAltI2C() {
+	D printf("setAltI2C\n");
+	i2cAlternate = TRUE;
+    }
+
     void SSD1306::textDisplay(const char *message) {
         if(!i2cInitialised)
         {
@@ -175,11 +180,30 @@
                 buffer[1 + i] = displayLines[line][i];
             }
             writeI2C(buffer, 129);
+            /*
+            for(int chunk=0; chunk< 8; chunk++)
+            {
+                unsigned char buffer[17] = {0};
+                buffer[0] = 0x40;
+                for(int i=0; i<16;i++)
+                {
+                    D printf("[%i]=%x ", (i+1), displayLines[line][(chunk * 16) + i]);
+                    buffer[i+1] = displayLines[line][(chunk * 16) + i];
+                }
+                D printf("\n");
+                writeI2C(buffer, 17);
+            }
+            */
         }
     }
 
     void SSD1306::writeI2C(unsigned char* data, int bytes) {
-        char *deviceName = (char*)"/dev/i2c-1";
+        char *deviceName;
+	if(i2cAlternate) {
+		deviceName = (char*)"/dev/i2c-0";
+	} else {
+		deviceName = (char*)"/dev/i2c-1";
+	}
 	    if ((i2cHandle = open(deviceName, O_RDWR)) < 0)
 	    {
             printf("error opening I2C\n");
@@ -200,7 +224,6 @@
             }
             
             // Close the i2c device bus
-            char *deviceName = (char*)"dev/i2c-1";
             close(*deviceName);
     	}
 
