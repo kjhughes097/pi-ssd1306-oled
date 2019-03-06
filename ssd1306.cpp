@@ -224,7 +224,7 @@
             }
             
             // Close the i2c device bus
-            close(*deviceName);
+            close(i2cHandle);
     	}
 
     }
